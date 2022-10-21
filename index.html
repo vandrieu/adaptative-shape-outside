@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    .grid {
+      display: grid;
+      border: 1px solid red;
+      /* to show overflow */
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      width: 100%;
+      /*  meant to be responsive but this width should show overflow occurring  */
+    }
+
+    .cell {
+      grid-column-start: 1;
+      height: 100%;
+      border: 1px solid blue;
+      /* to show overflow */
+    }
+
+    .shape-outside {
+      shape-outside: polygon(0 0, 100% 0, 0 100%);
+      clip-path: polygon(0 0, 100% 0, 0 100%);
+      background-color: lightblue;
+      width: 100%;
+      height: 100%;
+      float: left;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div class="grid">
+    <div class="cell">
+      <div class="shape-outside">
+      </div>
+      <div class="text">
+        Sed exercitationem eum dolorem quam nam sit explicabo. Ut facere nihil architecto dolores ea consequatur tempore. Modi possimus omnis velit ut numquam excepturi vel. Culpa velit quisquam illum aut cupiditate aut quisquam ut.
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="cell">
+      <div class="shape-outside">
+      </div>
+      <div class="text">
+        Sed exercitationem eum dolorem quam nam sit explicabo. Ut facere nihil architecto dolores ea consequatur tempore. Modi possimus omnis velit ut numquam excepturi vel. Culpa velit quisquam illum aut cupiditate aut quisquam ut. Sed exercitationem eum dolorem quam nam sit explicabo. Ut facere nihil architecto dolores ea consequatur tempore. Modi possimus omnis velit ut numquam excepturi vel. Culpa velit quisquam illum aut cupiditate aut quisquam ut.
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="cell">
+      <div class="shape-outside">
+      </div>
+      <div class="text">
+        Sed exercitationem eum dolorem quam nam sit explicabo. Ut facere nihil architecto dolores ea consequatur tempore. Modi possimus omnis velit ut numquam excepturi vel. Culpa velit quisquam illum aut cupiditate aut quisquam ut. Sed exercitationem eum dolorem quam nam sit explicabo. Ut facere nihil architecto dolores ea consequatur tempore. Modi possimus omnis velit ut numquam excepturi vel. Culpa velit quisquam illum aut cupiditate aut quisquam ut. Sed exercitationem eum dolorem quam nam sit explicabo. Ut facere nihil architecto dolores ea consequatur tempore. Modi possimus omnis velit ut numquam excepturi vel. Culpa velit quisquam illum aut cupiditate aut quisquam ut. Sed exercitationem eum dolorem quam nam sit explicabo. Ut facere nihil architecto dolores ea consequatur tempore. Modi possimus omnis velit ut numquam excepturi vel. Culpa velit quisquam illum aut cupiditate aut quisquam ut.
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="cell">
+      <div class="shape-outside">
+      </div>
+      <div class="text">
+        Hello, how are you? I'm good, thanks. How are you?
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    function resizeAllShapes() {
+      for (const cell of [...document.querySelectorAll('.cell')]) {
+        let currentCellHeight, textHeight
+        do {
+          currentCellHeight = Number(cell.style.height.replace('px', ''))
+          textHeight = cell.querySelector('.text').clientHeight
+          cell.style.height = `${textHeight}px`
+        } while (currentCellHeight !== textHeight)
+      }
+    }
+
+    new ResizeObserver(resizeAllShapes).observe(document.body)
+  </script>
+</body>
+
+</html>
